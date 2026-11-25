@@ -1,0 +1,6 @@
+discharge_disposition_id,size,sum,mean,description
+11,1642,0,0.0,Expired
+13,399,19,0.0476190476190476,Hospice / home
+14,372,24,0.064516129032258,Hospice / medical facility
+19,8,0,0.0,"Expired at home. Medicaid only, hospice."
+20,2,0,0.0,"Expired in a medical facility. Medicaid only, hospice."

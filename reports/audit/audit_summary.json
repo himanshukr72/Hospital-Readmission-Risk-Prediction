@@ -1,0 +1,24 @@
+{
+  "raw_shape": [
+    101766,
+    50
+  ],
+  "unique_patients": 71518,
+  "exact_duplicate_rows": 0,
+  "duplicate_encounter_rows": 0,
+  "raw_target_counts": {
+    "NO": 54864,
+    ">30": 35545,
+    "<30": 11357
+  },
+  "audited_shape": [
+    101766,
+    51
+  ],
+  "target_counts": {
+    "0": 90409,
+    "1": 11357
+  },
+  "positive_rate": 0.11159915885462728,
+  "patients_with_multiple_encounters": 16773
+}

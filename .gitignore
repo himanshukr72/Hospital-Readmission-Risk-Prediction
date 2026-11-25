@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.ipynb_checkpoints/
+.pytest_cache/
+.DS_Store
+data/raw/*
+data/processed/*
+models/*
+reports/audit/audited_encounters.csv
+!**/.gitkeep
+outputs/
+*.joblib

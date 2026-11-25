@@ -1,0 +1,12 @@
+{
+  "quick": true,
+  "encounters": 4352,
+  "patients": 3000,
+  "positive_rate": 0.12270220588235294,
+  "splits": {
+    "train": 2611,
+    "calibration": 434,
+    "threshold": 435,
+    "test": 872
+  }
+}

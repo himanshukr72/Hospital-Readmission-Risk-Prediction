@@ -1,0 +1,19 @@
+[project]
+name = "risk-prediction-in-diabetic-patients"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "himanshukr72", email = "himanshukr72830@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.5.5",
+]
+
+[project.scripts]
+risk-prediction-in-diabetic-patients = "risk_prediction_in_diabetic_patients:main"
+
+[build-system]
+requires = ["uv_build>=0.12.22,<0.13.0"]
+build-backend = "uv_build"
