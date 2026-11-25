@@ -1,0 +1,5 @@
+{
+  "model": "RandomForest",
+  "threshold": 0.1617410775452906,
+  "selection": "validation average precision"
+}

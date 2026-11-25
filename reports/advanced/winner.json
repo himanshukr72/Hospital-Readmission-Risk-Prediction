@@ -1,0 +1,5 @@
+{
+  "model": "Stacking",
+  "threshold": 0.15395610507038202,
+  "selection": "validation average precision"
+}

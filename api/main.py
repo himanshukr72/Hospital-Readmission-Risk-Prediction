@@ -16,3 +16,6 @@ def infer(record:dict):
     try: return predict(bundle(),record)
     except FileNotFoundError: raise HTTPException(503,'Train model first')
     except (ValueError,KeyError,TypeError) as e: raise HTTPException(422,str(e))
+
+from api.visuals import router
+app.include_router(router)

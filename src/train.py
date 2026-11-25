@@ -59,6 +59,8 @@ def main():
     compare(y.iloc[test].to_numpy(),g.iloc[test].to_numpy(),preds,winner,out,50 if a.quick else 300)
     from .evaluation.plots import plots
     plots(y.iloc[test],preds,out)
+    from .evaluation.dashboard import export
+    export(y.iloc[test],preds,out)
     pipe,cm,t=fitted[winner]; bundle={'pipeline':pipe,'calibrator':cm,'threshold':t,'model':winner,'raw_fields':[c for c in raw if c not in ['encounter_id','patient_nbr','readmitted','weight','examide','citoglipton']],'feature_columns':list(x.columns),'quick':a.quick}
     joblib.dump(bundle,modeldir/'best.joblib'); (out/'winner.json').write_text(json.dumps({'model':winner,'threshold':t,'selection':'validation average precision'},indent=2))
     from .evaluation.explainability import explain

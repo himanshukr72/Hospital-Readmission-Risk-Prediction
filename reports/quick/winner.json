@@ -1,5 +1,5 @@
 {
   "model": "XGBoost",
-  "threshold": 0.1583978954093293,
+  "threshold": 0.15839789540932936,
   "selection": "validation average precision"
 }

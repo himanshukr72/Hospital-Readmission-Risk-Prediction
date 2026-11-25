@@ -12,3 +12,7 @@ reports/audit/audited_encounters.csv
 !**/.gitkeep
 outputs/
 *.joblib
+
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
