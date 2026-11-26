@@ -46,3 +46,32 @@ Run `python -m src.train_advanced --quick` for the subset smoke run, or `python 
 Start API with `python -m uvicorn api.main:app --port 8000` and frontend with `cd frontend; npm.cmd install; npm.cmd run dev`. Choose Advanced full dataset or Advanced demo from the run selector. Restart API after training. The updated frontend source was not built or browser-tested here.
 
 When upgrading an existing checkout, copy source/config files only, not `.git`, `.venv`, `data`, `models`, or `reports`; preserve locally generated results. Install Optuna via requirements-advanced.txt. See reports/advanced_quick/cohort.json for actual bundled demo sizes.
+
+
+# DiaRisk notebook upgrade
+
+This upgrade replaces nine report-viewer notebooks with fourteen executable analysis notebooks. Existing production training and inference modules are unchanged; `src/notebook_utils.py` is new. Notebook experiments import reusable production estimators and preprocessing, and implement training/evaluation loops in visible cells. They are instructional experiments, not identical to the integrated advanced training run. Notebook 14 optionally runs the exact production command. No previous full-dataset training artifacts are replaced by the notebook experiments.
+
+## Install and run (Windows PowerShell)
+
+From the repository root:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt -r requirements-advanced.txt -r requirements-notebooks.txt
+python -m jupyter lab
+```
+
+Alternatively install the VS Code Python and Jupyter extensions, open a notebook, select the `.venv` Python kernel, and click Run All. Keep both CSV files under `data/raw/`.
+
+Notebooks 01–14 can be run independently. Each loads its own data and uses the same patient-level partitions; notebook 01 audits all raw rows regardless of QUICK. All modeling notebooks default to `QUICK = True` (3,000 sampled patients, approximately 2,611 training encounters). Change to `False` in each relevant notebook for full eligible cohort. Full tuning and ablation can be computationally expensive. Notebook results go to `reports/notebook_quick/` or `reports/notebook_full/`. These are not the reports consumed by the production dashboard. Notebook 14 reads `reports/advanced_quick/` or `reports/advanced/` and loads the matching saved model. To run actual production training, execute `python -m src.train_advanced --trials 50` from the project root or explicitly enable RUN_TRAINING in notebook 14. This can update the production reports/model for the selected scope. Do not use test performance to select or tune models. The original test partition has already been examined, so results are exploratory and not independent validation.
+
+## Notebook sequence
+
+01 raw data audit, missingness, target and exclusion checks; 02 EDA and associations; 03 leakage-safe preprocessing; 04 baseline training; 05 boosting training; 06 SMOTENC, ADASYN, weights; 07 randomised search; 08 probability calibration and threshold selection; 09 permutation importance and TreeSHAP; 10 advanced feature ablation; 11 selection and Optuna; 12 soft voting and stacking; 13 learning curves and patient bootstrap; 14 production model and prediction verification.
+
+Notebooks contain actual executable code; results are generated when run. Do not publish patient-level data, identifiers, or sensitive outputs. These are academic experiments, not clinically validated predictions.
+
+## Updating an existing project
+
+Extract the small notebook patch and copy its `notebooks/` folder into your project root (replace matching `.ipynb` files), copy `src/notebook_utils.py` into the existing `src/` folder, and copy `requirements-notebooks.txt` and this README to the project root. Do not delete existing Python modules, `.git`, `.venv`, `models/`, `reports/`, or `data/`. Commit notebooks and code only after reviewing `git status`.
